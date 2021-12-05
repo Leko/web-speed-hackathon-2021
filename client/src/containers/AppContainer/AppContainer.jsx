@@ -7,11 +7,12 @@ import { useFetch } from '../../hooks/use_fetch';
 import { fetchJSON } from '../../utils/fetchers';
 import { AuthModalContainer } from '../AuthModalContainer';
 import { NewPostModalContainer } from '../NewPostModalContainer';
-import { NotFoundContainer } from '../NotFoundContainer';
-import { PostContainer } from '../PostContainer';
-import { TermContainer } from '../TermContainer';
-import { TimelineContainer } from '../TimelineContainer';
-import { UserProfileContainer } from '../UserProfileContainer';
+
+const TimelineContainer = React.lazy(() => import('../TimelineContainer'))
+const UserProfileContainer = React.lazy(() => import('../UserProfileContainer'))
+const PostContainer = React.lazy(() => import('../PostContainer'))
+const TermContainer = React.lazy(() => import('../TermContainer'))
+const NotFoundContainer = React.lazy(() => import('../NotFoundContainer'))
 
 /** @type {React.VFC} */
 const AppContainer = () => {
@@ -47,11 +48,11 @@ const AppContainer = () => {
         onRequestOpenPostModal={handleRequestOpenPostModal}
       >
         <Routes>
-          <Route element={<TimelineContainer />} path="/" />
-          <Route element={<UserProfileContainer />} path="/users/:username" />
-          <Route element={<PostContainer />} path="/posts/:postId" />
-          <Route element={<TermContainer />} path="/terms" />
-          <Route element={<NotFoundContainer />} path="*" />
+          <Route element={<React.Suspense fallback={null}><TimelineContainer /></React.Suspense>} path="/" />
+          <Route element={<React.Suspense fallback={null}><UserProfileContainer /></React.Suspense>} path="/users/:username" />
+          <Route element={<React.Suspense fallback={null}><PostContainer /></React.Suspense>} path="/posts/:postId" />
+          <Route element={<React.Suspense fallback={null}><TermContainer /></React.Suspense>} path="/terms" />
+          <Route element={<React.Suspense fallback={null}><NotFoundContainer /></React.Suspense>} path="*" />
         </Routes>
       </AppPage>
 
