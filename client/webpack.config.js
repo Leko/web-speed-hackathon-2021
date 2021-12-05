@@ -51,10 +51,6 @@ const config = {
     path: DIST_PATH,
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      AudioContext: ['standardized-audio-context', 'AudioContext'],
-      Buffer: ['buffer', 'Buffer'],
-    }),
     new webpack.EnvironmentPlugin({
       BUILD_DATE: new Date().toISOString(),
       // Heroku では SOURCE_VERSION 環境変数から commit hash を参照できます
