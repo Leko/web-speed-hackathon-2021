@@ -8,11 +8,17 @@ import { fetchJSON } from '../../utils/fetchers';
 import { AuthModalContainer } from '../AuthModalContainer';
 import { NewPostModalContainer } from '../NewPostModalContainer';
 
-const TimelineContainer = React.lazy(() => import('../TimelineContainer'))
-const UserProfileContainer = React.lazy(() => import('../UserProfileContainer'))
-const PostContainer = React.lazy(() => import('../PostContainer'))
-const TermContainer = React.lazy(() => import('../TermContainer'))
-const NotFoundContainer = React.lazy(() => import('../NotFoundContainer'))
+const TimelineContainer = React.lazy(() => import('../TimelineContainer'));
+const UserProfileContainer = React.lazy(() => import('../UserProfileContainer'));
+const PostContainer = React.lazy(() => import('../PostContainer'));
+const TermContainer = React.lazy(() => import('../TermContainer'));
+const NotFoundContainer = React.lazy(() => import('../NotFoundContainer'));
+
+const Loading = () => (
+  <Helmet>
+    <title>読込中 - CAwitter</title>
+  </Helmet>
+);
 
 /** @type {React.VFC} */
 const AppContainer = () => {
@@ -33,11 +39,7 @@ const AppContainer = () => {
   const handleRequestCloseModal = React.useCallback(() => setModalType('none'), []);
 
   if (isLoading) {
-    return (
-      <Helmet>
-        <title>読込中 - CAwitter</title>
-      </Helmet>
-    );
+    return <Loading />;
   }
 
   return (
@@ -48,11 +50,46 @@ const AppContainer = () => {
         onRequestOpenPostModal={handleRequestOpenPostModal}
       >
         <Routes>
-          <Route element={<React.Suspense fallback={null}><TimelineContainer /></React.Suspense>} path="/" />
-          <Route element={<React.Suspense fallback={null}><UserProfileContainer /></React.Suspense>} path="/users/:username" />
-          <Route element={<React.Suspense fallback={null}><PostContainer /></React.Suspense>} path="/posts/:postId" />
-          <Route element={<React.Suspense fallback={null}><TermContainer /></React.Suspense>} path="/terms" />
-          <Route element={<React.Suspense fallback={null}><NotFoundContainer /></React.Suspense>} path="*" />
+          <Route
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <TimelineContainer />
+              </React.Suspense>
+            }
+            path="/"
+          />
+          <Route
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <UserProfileContainer />
+              </React.Suspense>
+            }
+            path="/users/:username"
+          />
+          <Route
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <PostContainer />
+              </React.Suspense>
+            }
+            path="/posts/:postId"
+          />
+          <Route
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <TermContainer />
+              </React.Suspense>
+            }
+            path="/terms"
+          />
+          <Route
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <NotFoundContainer />
+              </React.Suspense>
+            }
+            path="*"
+          />
         </Routes>
       </AppPage>
 
