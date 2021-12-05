@@ -41,7 +41,10 @@ export function useInfiniteFetch(apiPath, fetcher) {
       offset,
     };
 
-    const promise = fetcher(apiPath);
+    const params = new URLSearchParams()
+    params.set('limit', LIMIT)
+    params.set('offset', offset)
+    const promise = fetcher(apiPath + '?' + params.toString());
 
     promise.then((allData) => {
       setResult((cur) => ({
