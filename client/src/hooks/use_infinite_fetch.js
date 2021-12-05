@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LIMIT = 10;
+const LIMIT = 15;
 
 /**
  * @template T
@@ -41,9 +41,9 @@ export function useInfiniteFetch(apiPath, fetcher) {
       offset,
     };
 
-    const params = new URLSearchParams()
-    params.set('limit', LIMIT)
-    params.set('offset', offset)
+    const params = new URLSearchParams();
+    params.set('limit', LIMIT);
+    params.set('offset', offset);
     const promise = fetcher(apiPath + '?' + params.toString());
 
     promise.then((allData) => {
