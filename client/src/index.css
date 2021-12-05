@@ -4,10 +4,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import './styles/webfont.css';
-
 body {
-  font-family: '源暎エムゴ', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .font-awesome {
