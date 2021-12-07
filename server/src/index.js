@@ -8,6 +8,7 @@ async function main() {
   const server = http.createServer(app);
 
   // データベースの初期化をします
+  await sequelize.authenticate();
   await sequelize.sync({
     force: true,
     logging: false,
