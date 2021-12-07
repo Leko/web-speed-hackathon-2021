@@ -26,7 +26,13 @@ const ImageArea = ({ images }) => {
                 'row-span-2': images.length <= 2 || (images.length === 3 && idx === 0),
               })}
             >
-              <img alt={image.alt} src={getImagePath(image.id)} style={{objectFit:'cover'}} className="w-full h-full" />
+              <img
+                alt={image.alt}
+                src={getImagePath(image.id)}
+                style={{ objectFit: 'cover' }}
+                className="w-full h-full"
+                loading="lazy"
+              />
             </div>
           );
         })}
