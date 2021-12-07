@@ -6,17 +6,26 @@ import compression from 'compression';
 import { apiRouter } from './routes/api';
 import { staticRouter } from './routes/static';
 
+function redisStore() {
+  const redis = require('redis');
+
+  let RedisStore = require('connect-redis')(session);
+  let redisClient = redis.createClient({ url: process.env.REDIS_URL });
+
+  return new RedisStore({ client: redisClient });
+}
+
 const app = Express();
 
 app.set('trust proxy', true);
 
-app.use(compression())
+app.use(compression());
 app.use(
   session({
-    proxy: true,
     resave: false,
     saveUninitialized: false,
     secret: 'secret',
+    ...(process.env.REDIS_URL ? { store: redisStore() } : { proxy: true }),
   }),
 );
 app.use(bodyParser.json());
