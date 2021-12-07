@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const WebpackRemoveEmptyScripts = require('webpack-remove-empty-scripts');
 const webpack = require('webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -23,11 +24,10 @@ const config = {
   },
   devtool: isProd ? 'source-map' : 'inline-source-map',
   entry: {
-    main: [
-      path.resolve(SRC_PATH, './index.css'),
-      path.resolve(SRC_PATH, './buildinfo.js'),
-      path.resolve(SRC_PATH, './index.jsx'),
-    ],
+    normalize: require.resolve('normalize.css'),
+    webfont: path.resolve(SRC_PATH, './styles/webfont.css'),
+    app: path.resolve(SRC_PATH, './index.css'),
+    main: [path.resolve(SRC_PATH, './buildinfo.js'), path.resolve(SRC_PATH, './index.jsx')],
   },
   module: {
     rules: [
@@ -47,7 +47,6 @@ const config = {
     ],
   },
   output: {
-    filename: 'scripts/[name].js',
     path: DIST_PATH,
   },
   plugins: [
@@ -57,6 +56,7 @@ const config = {
       COMMIT_HASH: process.env.SOURCE_VERSION || '',
       NODE_ENV: process.env.NODE_ENV,
     }),
+    new WebpackRemoveEmptyScripts(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].css',
     }),
