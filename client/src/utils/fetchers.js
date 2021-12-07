@@ -1,17 +1,9 @@
 function validateResponse(res) {
   if (!res.ok) {
-    return Promise.reject()
+    return Promise.reject();
   } else {
-    return res
+    return res;
   }
-}
-
-/**
- * @param {string} url
- * @returns {Promise<ArrayBuffer>}
- */
-async function fetchBinary(url) {
-  return fetch(url).then(validateResponse).then(res => res.arrayBuffer())
 }
 
 /**
@@ -20,7 +12,9 @@ async function fetchBinary(url) {
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  return fetch(url).then(validateResponse).then(res => res.json())
+  return fetch(url)
+    .then(validateResponse)
+    .then((res) => res.json());
 }
 
 /**
@@ -35,8 +29,10 @@ async function sendFile(url, file) {
     body: file,
     headers: {
       'Content-Type': 'application/octet-stream',
-    }
-  }).then(validateResponse).then(res => res.json())
+    },
+  })
+    .then(validateResponse)
+    .then((res) => res.json());
 }
 
 /**
@@ -52,7 +48,9 @@ async function sendJSON(url, data) {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then(validateResponse).then(res => res.json())
+  })
+    .then(validateResponse)
+    .then((res) => res.json());
 }
 
-export { fetchBinary, fetchJSON, sendFile, sendJSON };
+export { fetchJSON, sendFile, sendJSON };
