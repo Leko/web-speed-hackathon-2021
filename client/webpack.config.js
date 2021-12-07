@@ -62,7 +62,6 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, './index.html'),
-      publicPath: 'https://leko-web-speed-hackathon-2021.web.app/',
     }),
   ],
   resolve: {
