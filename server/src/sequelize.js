@@ -1,11 +1,5 @@
 import { Sequelize } from 'sequelize';
 
-import { DATABASE_PATH } from './paths';
-
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  logging: false,
-  storage: DATABASE_PATH,
-});
+const sequelize = new Sequelize(process.env.DATABASE_URL ?? 'sqlite::memory:', { logging: false });
 
 export { sequelize };
