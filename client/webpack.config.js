@@ -62,6 +62,7 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, './index.html'),
+      publicPath: '/',
     }),
   ],
   resolve: {
