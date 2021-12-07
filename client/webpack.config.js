@@ -24,7 +24,6 @@ const config = {
   },
   devtool: isProd ? 'source-map' : 'inline-source-map',
   entry: {
-    normalize: require.resolve('normalize.css'),
     webfont: path.resolve(SRC_PATH, './styles/webfont.css'),
     app: path.resolve(SRC_PATH, './index.css'),
     main: [path.resolve(SRC_PATH, './buildinfo.js'), path.resolve(SRC_PATH, './index.jsx')],
