@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { useFetch } from '../../../hooks/use_fetch';
-import { fetchBinary } from '../../../utils/fetchers';
-import { getSoundPath } from '../../../utils/get_path';
+import { getSoundPath, getSoundSavePath } from '../../../utils/get_path';
 import { AspectRatioBox } from '../AspectRatioBox';
 import { FontAwesomeIcon } from '../FontAwesomeIcon';
-import { SoundWaveSVG } from '../SoundWaveSVG';
 
 /**
  * @typedef {object} Props
@@ -16,8 +13,6 @@ import { SoundWaveSVG } from '../SoundWaveSVG';
  * @type {React.VFC<Props>}
  */
 const SoundPlayer = ({ sound }) => {
-  const { data, isLoading } = useFetch(getSoundPath(sound.id), fetchBinary);
-
   const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
   /** @type {React.ReactEventHandler<HTMLAudioElement>} */
   const handleTimeUpdate = React.useCallback((ev) => {
@@ -57,7 +52,9 @@ const SoundPlayer = ({ sound }) => {
         <div className="pt-2">
           <AspectRatioBox aspectHeight={1} aspectWidth={10}>
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 w-full h-full">{data ? <SoundWaveSVG soundData={data} /> : null}</div>
+              <div className="absolute inset-0 w-full h-full">
+                <img style={{ width: '100%', height: '100%' }} src={getSoundSavePath(sound.id)} />
+              </div>
               <div
                 className="absolute inset-0 w-full h-full bg-gray-300 opacity-75"
                 style={{ left: `${currentTimeRatio * 100}%` }}

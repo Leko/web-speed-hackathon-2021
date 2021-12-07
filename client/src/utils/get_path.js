@@ -23,6 +23,14 @@ function getSoundPath(soundId) {
 }
 
 /**
+ * @param {string} soundId
+ * @returns {string}
+ */
+function getSoundSavePath(soundId) {
+  return `/sounds/waves/${soundId}.svg`;
+}
+
+/**
  * @param {string} profileImageId
  * @returns {string}
  */
@@ -30,4 +38,4 @@ function getProfileImagePath(profileImageId) {
   return `/images/profiles/${profileImageId}.jpg`;
 }
 
-export { getImagePath, getMoviePath, getSoundPath, getProfileImagePath };
+export { getImagePath, getMoviePath, getSoundPath, getSoundSavePath, getProfileImagePath };

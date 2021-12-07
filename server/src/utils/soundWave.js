@@ -1,4 +1,4 @@
-import React from 'react';
+import { AudioContext } from 'web-audio-api';
 
 const chunk = (arr, chunkSize = 1, cache = []) => {
   const tmp = [...arr];
@@ -11,7 +11,7 @@ const chunk = (arr, chunkSize = 1, cache = []) => {
  * @param {ArrayBuffer} data
  * @returns {Promise<{ max: number, peaks: number[] }}
  */
-async function calculate(data) {
+export async function calculate(data) {
   const audioCtx = new AudioContext();
 
   // 音声をデコードする
@@ -36,31 +36,14 @@ async function calculate(data) {
   return { max, peaks };
 }
 
-/**
- * @typedef {object} Props
- * @property {ArrayBuffer} soundData
- */
-
-/**
- * @type {React.VFC<Props>}
- */
-const SoundWaveSVG = ({ soundData }) => {
-  const [{ max, peaks }, setPeaks] = React.useState({ max: 0, peaks: [] });
-
-  React.useEffect(() => {
-    calculate(soundData).then(({ max, peaks }) => {
-      setPeaks({ max, peaks });
-    });
-  }, [soundData]);
-
-  return (
-    <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1">
-      {peaks.map((peak, idx) => {
+export async function generateSoundWaveSVG(buffer) {
+  const { peaks, max } = await calculate(buffer);
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 1">
+      ${peaks.map((peak, idx) => {
         const ratio = peak / max;
-        return <rect key={idx} fill="#2563EB" height={ratio} width="1" x={idx} y={1 - ratio} />;
+        return `<rect key="${idx}" fill="#2563EB" height="${ratio}" width="1" x="${idx}" y="${1 - ratio}" />`;
       })}
     </svg>
-  );
-};
-
-export { SoundWaveSVG };
+  `.trim();
+}
