@@ -46,6 +46,7 @@ const config = {
     ],
   },
   output: {
+    filename: '[name]-[hash].js',
     path: DIST_PATH,
   },
   plugins: [
@@ -57,11 +58,11 @@ const config = {
     }),
     new WebpackRemoveEmptyScripts(),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name]-[hash].css',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, './index.html'),
-      publicPath: '/',
+      publicPath: 'https://leko-web-speed-hackathon-2021.web.app/',
     }),
   ],
   resolve: {
