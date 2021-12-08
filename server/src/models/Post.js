@@ -42,7 +42,8 @@ const Post = sequelize.define(
         },
         {
           association: 'images',
-          through: { attributes: [] },
+          through: { attributes: ['id'] },
+          order: [['id', 'ASC']],
         },
         { association: 'movie' },
         { association: 'sound' },

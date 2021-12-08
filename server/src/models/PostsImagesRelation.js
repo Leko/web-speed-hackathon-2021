@@ -13,10 +13,6 @@ const PostsImagesRelation = sequelize.define('PostsImagesRelation', {
     primaryKey: true,
     type: DataTypes.STRING,
   },
-  displayOrder: {
-    allowNull: false,
-    type: DataTypes.NUMBER,
-  },
   imageId: {
     references: {
       model: Image,
