@@ -10,14 +10,14 @@ import users from '../seeds/users.json';
 import { Comment, Image, Movie, Post, PostsImagesRelation, ProfileImage, Sound, User } from './models';
 
 async function insertSeeds() {
-  await Comment.destroy({ where: { 1: '1' }, logging: false });
-  await PostsImagesRelation.destroy({ where: { 1: '1' }, logging: false });
-  await Post.destroy({ where: { 1: '1' }, logging: false });
-  await User.destroy({ where: { 1: '1' }, logging: false });
-  await Sound.destroy({ where: { 1: '1' }, logging: false });
-  await Movie.destroy({ where: { 1: '1' }, logging: false });
-  await Image.destroy({ where: { 1: '1' }, logging: false });
-  await ProfileImage.destroy({ where: { 1: '1' }, logging: false });
+  await Comment.destroy({ where: {}, logging: false });
+  await PostsImagesRelation.destroy({ where: {}, logging: false });
+  await Post.destroy({ where: {}, logging: false });
+  await User.destroy({ where: {}, logging: false });
+  await Sound.destroy({ where: {}, logging: false });
+  await Movie.destroy({ where: {}, logging: false });
+  await Image.destroy({ where: {}, logging: false });
+  await ProfileImage.destroy({ where: {}, logging: false });
 
   await ProfileImage.bulkCreate(profileImages, { logging: false });
   await Image.bulkCreate(images, { logging: false });
