@@ -6,6 +6,12 @@ import { Image } from './Image';
 import { Post } from './Post';
 
 const PostsImagesRelation = sequelize.define('PostsImagesRelation', {
+  id: {
+    allowNull: false,
+    defaultValue: () => ulid(),
+    primaryKey: true,
+    type: DataTypes.STRING,
+  },
   imageId: {
     references: {
       model: Image,
