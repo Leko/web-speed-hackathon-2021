@@ -15,7 +15,7 @@ const ImageArea = ({ images }) => {
     <AspectRatioBox aspectHeight={9} aspectWidth={16}>
       <div className="grid gap-1 grid-cols-2 grid-rows-2 w-full h-full border border-gray-300 rounded-lg overflow-hidden">
         {images
-          .sort((a, b) => (a.id < b.id ? -1 : 1))
+          // .sort((a, b) => (a.id < b.id ? 1 : -1))
           .map((image, idx) => {
             return (
               <div

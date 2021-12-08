@@ -25,7 +25,13 @@ async function insertSeeds() {
   await Sound.bulkCreate(sounds, { logging: false });
   await User.bulkCreate(users, { logging: false });
   await Post.bulkCreate(posts, { logging: false });
-  await PostsImagesRelation.bulkCreate(postsImagesRelation, { logging: false });
+  const orderCache = {};
+  for (const p of postsImagesRelation) {
+    orderCache[p.postId] = 0;
+    orderCache[p.postId]++;
+    const displayOrder = orderCache[p.postId];
+    await PostsImagesRelation.create({ ...p, displayOrder }, { logging: false });
+  }
   await Comment.bulkCreate(comments, { logging: false });
 }
 
