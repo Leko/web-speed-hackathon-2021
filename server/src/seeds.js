@@ -11,14 +11,14 @@ import { Comment, Image, Movie, Post, PostsImagesRelation, ProfileImage, Sound, 
 
 async function insertSeeds() {
   await Promise.all([
-    ProfileImage.destroy({ truncate: true, logging: false }),
-    Image.destroy({ truncate: true, logging: false }),
-    Movie.destroy({ truncate: true, logging: false }),
-    Sound.destroy({ truncate: true, logging: false }),
-    User.destroy({ truncate: true, logging: false }),
-    Post.destroy({ truncate: true, logging: false }),
-    PostsImagesRelation.destroy({ truncate: true, logging: false }),
     Comment.destroy({ truncate: true, logging: false }),
+    PostsImagesRelation.destroy({ truncate: true, logging: false }),
+    Post.destroy({ truncate: true, logging: false }),
+    User.destroy({ truncate: true, logging: false }),
+    Sound.destroy({ truncate: true, logging: false }),
+    Movie.destroy({ truncate: true, logging: false }),
+    Image.destroy({ truncate: true, logging: false }),
+    ProfileImage.destroy({ truncate: true, logging: false }),
   ]);
   await ProfileImage.bulkCreate(profileImages, { logging: false });
   await Image.bulkCreate(images, { logging: false });
