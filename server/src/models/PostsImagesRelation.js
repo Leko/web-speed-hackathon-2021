@@ -30,7 +30,7 @@ const PostsImagesRelation = sequelize.define(
   },
   {
     defaultScope: {
-      order: [['id', 'DESC']],
+      order: [['id', 'ASC']],
     },
   },
 );
