@@ -5,7 +5,7 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "scripts": {
-    "build": "$(npm bin)/babel src --out-dir dist",
+    "build": "echo noop",
     "prestart": "npm-run-all prestart:clean prestart:init",
     "start": "babel-node --experimental-wasm-threads src/index.js",
     "prestart:clean": "rimraf ../upload",
@@ -44,7 +44,6 @@
     "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
     "@types/bcrypt": "10.0.28-alpha",
     "@types/body-parser": "1.19.2",
     "@types/connect-history-api-fallback": "1.3.5",
@@ -57,7 +56,7 @@
     "@types/uuid": "8.3.3"
   },
   "engines": {
-    "node": "14.x.x"
+    "node": "16.x.x"
   },
   "typesync": {
     "ignoreDeps": [
