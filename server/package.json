@@ -13,6 +13,7 @@
     "prestart:build": "babel src --out-dir dist"
   },
   "dependencies": {
+    "@babel/cli": "^7.16.0",
     "@babel/core": "7.16.0",
     "@babel/node": "7.16.0",
     "@babel/preset-env": "7.16.4",
@@ -45,7 +46,6 @@
     "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
     "@types/bcrypt": "10.0.28-alpha",
     "@types/body-parser": "1.19.2",
     "@types/connect-history-api-fallback": "1.3.5",
