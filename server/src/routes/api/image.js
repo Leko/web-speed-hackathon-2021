@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { convertImage } from '../../converters/convert_image';
 import { UPLOAD_PATH } from '../../paths';
+import { storeFile } from '../../utils/file';
 
 // 変換した画像の拡張子
 const EXTENSION = 'avif';
@@ -33,7 +34,7 @@ router.post('/images', async (req, res) => {
   });
 
   const filePath = path.resolve(UPLOAD_PATH, `./images/${imageId}.${EXTENSION}`);
-  await fs.writeFile(filePath, converted);
+  await storeFile(filePath, converted);
 
   return res.status(200).type('application/json').send({ id: imageId });
 });
