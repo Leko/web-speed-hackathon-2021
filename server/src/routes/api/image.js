@@ -10,7 +10,7 @@ import { UPLOAD_PATH } from '../../paths';
 import { storeFile } from '../../utils/file';
 
 // 変換した画像の拡張子
-const EXTENSION = 'webp';
+const EXTENSION = 'jpg';
 
 const router = Router();
 
