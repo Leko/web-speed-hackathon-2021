@@ -15,7 +15,7 @@ async function convertImage(buffer, options) {
       quality: 40,
       reductionEffort: 6,
       height: options.height,
-      width: options.width ?? 574,
+      width: options.width ?? 575,
     })
     .toFormat(options.extension ?? 'jpeg')
     .toBuffer();
