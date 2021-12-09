@@ -12,8 +12,10 @@ async function convertImage(buffer, options) {
   return sharp(buffer)
     .resize({
       fit: 'cover',
+      quality: 40,
+      reductionEffort: 6,
       height: options.height,
-      width: options.width,
+      width: options.width ?? 574,
     })
     .toFormat(options.extension ?? 'jpeg')
     .toBuffer();
