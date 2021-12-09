@@ -13,18 +13,29 @@ import { sequelize } from '../sequelize';
  */
 
 /** @type {import('sequelize').ModelCtor<ImageModel>} */
-const Image = sequelize.define('Image', {
-  alt: {
-    allowNull: false,
-    defaultValue: '',
-    type: DataTypes.STRING,
+const Image = sequelize.define(
+  'Image',
+  {
+    alt: {
+      allowNull: false,
+      defaultValue: '',
+      type: DataTypes.STRING,
+    },
+    id: {
+      allowNull: false,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
   },
-  id: {
-    allowNull: false,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true,
-    type: DataTypes.UUID,
+  {
+    indexes: [
+      {
+        using: 'BTREE',
+        fields: ['createdAt'],
+      },
+    ],
   },
-});
+);
 
 export { Image };
