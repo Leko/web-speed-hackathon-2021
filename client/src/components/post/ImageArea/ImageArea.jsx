@@ -3,6 +3,7 @@ import React from 'react';
 
 import { getImagePath } from '../../../utils/get_path';
 import { AspectRatioBox } from '../../foundation/AspectRatioBox';
+// import { CoveredImage } from '../../foundation/CoveredImage';
 
 /**
  * @typedef {object} Props
@@ -29,9 +30,8 @@ const ImageArea = ({ images }) => {
               <img
                 alt={image.alt}
                 src={getImagePath(image.id)}
-                style={{ objectFit: 'cover' }}
                 className="w-full h-full"
-                loading="lazy"
+                style={{ objectFit: 'cover' }}
               />
             </div>
           );
