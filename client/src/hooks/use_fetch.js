@@ -1,4 +1,4 @@
-import React from 'react';
+import useSWR from 'swr';
 
 /**
  * @template T
@@ -15,37 +15,10 @@ import React from 'react';
  * @returns {ReturnValues<T>}
  */
 export function useFetch(apiPath, fetcher) {
-  const [result, setResult] = React.useState({
-    data: null,
-    error: null,
-    isLoading: true,
-  });
-
-  React.useEffect(() => {
-    setResult(() => ({
-      data: null,
-      error: null,
-      isLoading: true,
-    }));
-
-    const promise = fetcher(apiPath);
-
-    promise.then((data) => {
-      setResult((cur) => ({
-        ...cur,
-        data,
-        isLoading: false,
-      }));
-    });
-
-    promise.catch((error) => {
-      setResult((cur) => ({
-        ...cur,
-        error,
-        isLoading: false,
-      }));
-    });
-  }, [apiPath, fetcher]);
-
-  return result;
+  const { data, error } = useSWR(apiPath, fetcher);
+  return {
+    data,
+    error,
+    isLoading: !data && !error,
+  };
 }

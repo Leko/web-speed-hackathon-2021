@@ -1,20 +1,10 @@
-function validateResponse(res) {
-  if (!res.ok) {
-    return Promise.reject();
-  } else {
-    return res;
-  }
-}
-
 /**
  * @template T
  * @param {string} url
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  return fetch(url)
-    .then(validateResponse)
-    .then((res) => res.json());
+  return fetch(url).then((res) => res.json());
 }
 
 /**
@@ -30,9 +20,7 @@ async function sendFile(url, file) {
     headers: {
       'Content-Type': 'application/octet-stream',
     },
-  })
-    .then(validateResponse)
-    .then((res) => res.json());
+  }).then((res) => res.json());
 }
 
 /**
@@ -48,9 +36,7 @@ async function sendJSON(url, data) {
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then(validateResponse)
-    .then((res) => res.json());
+  }).then((res) => res.json());
 }
 
 export { fetchJSON, sendFile, sendJSON };
