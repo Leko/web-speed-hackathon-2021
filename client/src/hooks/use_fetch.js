@@ -15,7 +15,7 @@ import useSWR from 'swr';
  * @returns {ReturnValues<T>}
  */
 export function useFetch(apiPath, fetcher) {
-  const { data, error } = useSWR(apiPath, fetcher);
+  const { data, error } = useSWR(process.env.API_HOST + apiPath, fetcher);
   return {
     data,
     error,

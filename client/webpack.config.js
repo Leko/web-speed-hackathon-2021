@@ -56,6 +56,7 @@ const config = {
       // Heroku では SOURCE_VERSION 環境変数から commit hash を参照できます
       COMMIT_HASH: process.env.SOURCE_VERSION || '',
       NODE_ENV: process.env.NODE_ENV,
+      API_HOST: process.env.API_HOST ?? '',
     }),
     new WebpackRemoveEmptyScripts(),
     new MiniCssExtractPlugin({
