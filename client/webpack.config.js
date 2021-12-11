@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const WebpackRemoveEmptyScripts = require('webpack-remove-empty-scripts');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -63,6 +64,9 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, './index.html'),
       publicPath: '/',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: PUBLIC_PATH }],
     }),
   ],
   resolve: {
