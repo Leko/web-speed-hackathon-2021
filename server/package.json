@@ -5,6 +5,7 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "scripts": {
+    "preinstall": "if [ \"$CF_PAGES\" == \"1\" ]; then sudo apt-get install -y libasound2-dev; fi",
     "build": "echo noop",
     "prestart": "npm-run-all prestart:clean prestart:init prestart:build",
     "start": "node --experimental-wasm-threads dist/index.js",
