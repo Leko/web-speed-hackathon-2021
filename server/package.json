@@ -19,6 +19,7 @@
     "@babel/preset-env": "7.16.4",
     "@ffmpeg/core": "0.10.0",
     "@ffmpeg/ffmpeg": "0.10.1",
+    "audio-decode": "^1.4.0",
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
     "compression": "^1.7.4",
@@ -43,8 +44,7 @@
     "sharp": "0.29.3",
     "sqlite3": "5.0.2",
     "ulid": "2.3.0",
-    "uuid": "8.3.2",
-    "web-audio-api": "^0.2.2"
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "@types/bcrypt": "10.0.28-alpha",

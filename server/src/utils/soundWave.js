@@ -1,4 +1,4 @@
-import { AudioContext } from 'web-audio-api';
+import decode from 'audio-decode';
 
 const chunk = (arr, chunkSize = 1, cache = []) => {
   const tmp = [...arr];
@@ -12,13 +12,9 @@ const chunk = (arr, chunkSize = 1, cache = []) => {
  * @returns {Promise<{ max: number, peaks: number[] }}
  */
 export async function calculate(data) {
-  const audioCtx = new AudioContext();
-
   // 音声をデコードする
   /** @type {AudioBuffer} */
-  const buffer = await new Promise((resolve, reject) => {
-    audioCtx.decodeAudioData(data, resolve, reject);
-  });
+  const buffer = await decode(data, 2);
   // 左の音声データの絶対値を取る
   const leftData = buffer.getChannelData(0).map(Math.abs);
   // 右の音声データの絶対値を取る
